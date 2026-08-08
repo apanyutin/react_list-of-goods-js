@@ -57,8 +57,11 @@ export const App = () => {
         setActiveSort('Sort by length');
         break;
       case 'Reverse':
-        setIsReverse(current => !current);
-        setGoods(getSortedGoods(activeSort, !isReverse));
+        setIsReverse(current => {
+          const newValue = !current;
+          setGoods(getSortedGoods(activeSort, newValue));
+          return newValue;
+        });
         break;
       case 'Reset':
         setGoods(goodsFromServer);
